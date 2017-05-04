@@ -1,6 +1,6 @@
 /* =========================================================================
 
-$itemname$.cxx
+Mono.cxx
 
 Copyright (c) 2017 R-Koubou
 
@@ -24,8 +24,26 @@ SOFTWARE.
 
 ======================================================================== */
 
-string name        = "Templete";
-string description = "Description";
+/*
+
+ 0.0: Bypass
+~0.9: Solo L
+~1.9: Solo R
+2.0:  Mono
+
+*/
+
+string name        = "Mono Checker";
+string description = "0.0: Bypass, ~0.9: Solo L, ~1.9: Solo R, 2.0: Mono";
+string author      = "R-Koubou";
+
+array<string> inputParametersNames = { "Mode" };
+array<double> inputParameters( 1 );
+array<double> inputParametersMin     = { 0 };
+array<double> inputParametersMax     = { 2 };
+array<double> inputParametersDefault = { 0 };
+
+double mode   = 0;
 
 bool initialize()
 {
@@ -40,4 +58,36 @@ bool initialize()
 
 void processSample( array<double>& ioSample )
 {
+    const double L = ioSample[ 0 ];
+    const double R = ioSample[ 1 ];
+    const double v = mode;
+    double result  = 0;
+
+    if( v == 0 )
+    {
+        return;
+    }
+
+    // 0.1~0.9: Solo L
+    else if( v > 0 && v <= 0.9 )
+    {
+        result = L;
+    }
+    // 1.1~1.9: Solo R
+    else if( v >= 1.0 && v <= 1.9 )
+    {
+        result = R;
+    }
+    // max: Mono
+    else
+    {
+        result = ( L + R ) / 2;
+    }
+    ioSample[ 0 ] = result;
+    ioSample[ 1 ] = result;
 }
+
+ void updateInputParameters()
+ {
+    mode   = inputParameters[ 0 ];
+ }
