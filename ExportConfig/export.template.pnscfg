@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export applicative_type="PluginConfig" data_type="{0779F8E6-34E0-4DA5-9307-ECC37BE0FA8A}">
+    <content io_config_name="Please Select..." plugin_plugin_type="0" use_generic_skin="1" encrypt_dsp_script="1" io_config="" use_generic_params="0" plugin_manufacturer="R-Koubou" dest_path="" plugin_manufacturer_id="0000" plugin_name="My Plugin" plugin_guid="" plugin_id="0000"/>
+</Export>
